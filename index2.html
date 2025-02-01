@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سایت خبری گیمینگ</title>
+    <style>
+        
+        /* استایل کلی سایت */
+        body {
+            background: linear-gradient(135deg, #111, #ff0000); /* قرمز و سیاه */
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            margin-top: 50px;
+            color: #ff3333; /* قرمز */
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        /* انیمیشن fadeIn */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* استایل بخش اخبار */
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .news-item {
+            background: rgba(0, 0, 0, 0.7); /* پس‌زمینه سیاه و نیمه‌شفاف */
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 300px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* افکت نئون قرمز */
+        }
+
+        .news-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .news-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .news-item h3 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        /* انیمیشن اسکرول برای اخبار */
+        @keyframes scrollAnimation {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* استایل برای موبایل */
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .news-item {
+                max-width: 100%;
+                width: 100%;
+                padding: 10px;
+            }
+        }
+
+        /* استایل برای تبلت */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            .news-item {
+                max-width: 100%;
+                width: 100%;
+            } 
+            
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Kingdom Come: Deliverance 2</h1>
+    <p><b>دنباله‌ای است بر بازی موفق Kingdom Come: Deliverance که در سال ۲۰۱۸ منتشر شد. این بازی نقش‌آفرینی تاریخی در دنیای قرون وسطی با تمرکز بر واقع‌گرایی و جزئیات دقیق طراحی شده است.</b></p>
+<h3>تاریخ انتشار و پلتفرم‌ها:</h3>
+<p>بازی در تاریخ ۴ فوریه ۲۰۲۵ (۱۶ بهمن ۱۴۰۳) برای پلتفرم‌های PlayStation 5، Xbox Series X|S و رایانه‌های شخصی منتشر خواهد شد.</p>
+<h3>داستان و شخصیت‌ها: </h3>
+<p> داستان بازی ادامه‌ای است بر حوادث نسخه قبلی و حول محور شخصیت هنری، پسر یک آهنگر، می‌چرخد که درگیر جنگ داخلی در بوهمیا می‌شود. شخصیت‌های جدیدی مانند سر هانس کاپون و سر ایستوان توث به داستان اضافه شده‌اند.</p>
+<h3>گیم‌پلی و ویژگی‌ها:</h3>
+<p>دنیای باز و بزرگ‌تر: دنیای بازی دو برابر بزرگ‌تر از نسخه قبلی است و شامل مناطق جدیدی مانند بهشت بوهمی و شهر کاتنا هورا می‌شود.</p>
+<p>سلاح‌ها و مبارزات: اضافه شدن سلاح‌های جدید مانند کمان‌های دستی و سلاح‌های گرم اولیه، تنوع بیشتری به مبارزات می‌بخشد.</p>
+<img src="https://gameplayshop.ir/wp-content/uploads/2024/08/kingdom-come-deliverance-2-gamescom.jpg" alt=""
+style="border-radius: 30px; width: 400px;height: auto;">
+<img src="https://uploads.xtland.com/posts/2024-08/1724190568_kingdom-come-deliverance-2-scaled.jpg" alt="" style="border-radius: 30px;width: 400px; height: auto;"></img>
+<h3>شایعات و اخبار:</h3>
+<p>طولانی‌ترین اسکریپت در تاریخ بازی‌ها: طبق گفته‌های توسعه‌دهندگان، اسکریپت بازی شامل ۲.۲ میلیون کلمه است که می‌تواند رکوردی جدید در صنعت بازی‌سازی باشد.</p>
+<p>محتوای پس از انتشار: برنامه‌ریزی شده است که پس از انتشار، بازی به‌روزرسانی‌هایی مانند حالت‌های جدید، مسابقات اسب‌سواری و محتوای اضافی دریافت کند. </p>
+<h3>نسخه‌های ویژه:</h3>
+<p>نسخه استاندارد: شامل بازی اصلی. <br>
+    نسخه گلد: شامل سه بسته الحاقی و محتوای اضافی.<br>
+    نسخه کلکسیونی: شامل تمامی محتوای نسخه گلد به‌علاوه اقلام فیزیکی مانند نقشه پارچه‌ای و مجسمه هنری</p><br>
+<p style="color: black;"align="center" ><strong> &copy;;اخبارات ویرایش خواهد شد</strong></p>
+
+
+
+
+
+
+
+</body>
