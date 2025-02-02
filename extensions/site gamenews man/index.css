@@ -1,0 +1,85 @@
+/* تنظیمات ابتدایی برای تصویر یا لینک */
+.game-link {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px; /* گرد کردن گوشه‌ها */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-link img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* افکت نئون و بزرگ شدن تصویر */
+.game-link:hover img {
+    transform: scale(1.1); /* بزرگ کردن تصویر */
+    filter: brightness(1.3) contrast(1.2); /* افزایش روشنایی و کنتراست */
+}
+
+/* افکت موج انفجار نئون */
+.game-link::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 0, 0, 0.7);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.game-link:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* افکت روشنایی نئون */
+.game-link:hover {
+    box-shadow: 0 0 20px rgba(64, 0, 255, 0.9), 0 0 30px rgba(64, 0, 255, 0.6);
+}
+/* طراحی دکمه "ادامه مطلب" */
+.read-more-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 8px 12px;
+    background-color: #ff3333; /* قرمز برای دکمه */
+    color: white;
+    font-family: Impact, sans-serif;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    cursor: pointer;
+}
+
+.news-item:hover .read-more-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* برای اینکه دکمه‌ها فقط در حالتی که روی تصویر میره دیده بشن */
+.news-item {
+    position: relative;
+    overflow: hidden;
+}
+
+/* سبک‌دهی برای تصویر */
+.news-item img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.news-item:hover img {
+    transform: scale(1.05);
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اخبار گیمینگ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Impact&display=swap');
+        
+        body {
+            background: linear-gradient(135deg, #6a0dad, #4b0082);
+            color: white;
+            font-family: Impact, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .news-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+        
+        .news-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .news-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .rgb-footer {
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+            animation: rgb-animation 5s linear infinite;
+        }
+
+        @keyframes rgb-animation {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .update-text {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .warning-text {
+            font-size: 16px;
+            color: red;
+            margin-top: 5px;
+        }
+
+        /* مکعب آبی سه‌بعدی */
+        .cube-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 30px auto;
+            perspective: 1000px;
+        }
+        
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: rotateX(-20deg) rotateY(30deg);
+            transition: transform 1s;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: rgb(17, 0, 255);
+            border: 2px solid #000000;
+        }
+
+        .front  { transform: translateZ(75px); }
+        .back   { transform: rotateY(180deg) translateZ(75px); }
+        .left   { transform: rotateY(-90deg) translateZ(75px); }
+        .right  { transform: rotateY(90deg) translateZ(75px); }
+        .top    { transform: rotateX(90deg) translateZ(75px); }
+        .bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+    </style>
+</head>
+<body>
+    <h1>جدیدترین اخبار گیمینگ</h1>
+    
+    <!-- مکعب آبی سه‌بعدی -->
+    <div class="cube-container">
+        <div class="cube" id="cube">
+            <div class="cube-face front"></div>
+            <div class="cube-face back"></div>
+            <div class="cube-face left"></div>
+            <div class="cube-face right"></div>
+            <div class="cube-face top"></div>
+            <div class="cube-face bottom"></div>
+        </div>
+    </div>
+
+    <div class="news-container" id="news">
+        <script>
+            const newsData = [
+                {title: "آپدیت جدید بازی Call of Duty منتشر شد", description: "آپدیت جدید شامل مودهای جدید و بهینه‌سازی‌های گسترده است.", img: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/11/call-of-duty-black-ops-6-key-art.jpg" , link: "https://chatgpt.com/c/679daad7-85a8-800e-b3da-f57b7f23728e"},
+                {title: "بازی Elden Ring DLC معرفی شد", description: "بسته الحاقی جدید Elden Ring با محتوای گسترده رونمایی شد.", img: "https://images.thedirect.com/media/article_full/elden_BD08bkA.jpg"},
+                {title: "GTA VI تاریخ انتشار احتمالی مشخص شد", description: "شایعاتی درباره تاریخ انتشار GTA VI منتشر شده است.", img: "https://www.digikala.com/mag/wp-content/uploads/2023/12/Grand-Theft-Auto-VI-1.jpg"},
+                {title: "Cyberpunk 2077 نسخه جدید دریافت کرد", description: "پچ جدید بازی شامل رفع مشکلات و اضافه شدن ویژگی‌های جدید است.", img: "https://www.cyberpunk.net/build/images/social-thumbnail-en-ddcf4d23.jpghttps://vigiato.net/wp-content/uploads/2021/09/wallpapersden.com_johnny-silverhand-and-male-v-cyberpunk-2077_1920x1079.jpg"},
+                {title: "Minecraft به‌روزرسانی جدید دریافت کرد", description: "به‌روزرسانی جدید Minecraft شامل قابلیت‌های جدید و آیتم‌های جذاب است.", img: "https://www.nintendo.com/eu/media/images/10_share_images/games_15/nintendo_switch_4/2x1_NSwitch_Minecraft_image1600w.jpg"},
+                {title: "The Witcher 4 در دست توسعه است", description: "CD Projekt RED تایید کرد که نسخه جدیدی از The Witcher در حال توسعه است.", img: "https://www.pcgamesn.com/wp-content/sites/pcgamesn/2022/11/the-witcher-4-release-date-teaser-image-550x309.jpg"},
+                {title: "Forza Horizon 5 محتوای جدید دریافت کرد", description: "ماشین‌های جدید و چالش‌های هیجان‌انگیز به بازی اضافه شده‌اند.", img: "https://cdn.forza.net/strapi-uploads/assets/small_FH_5_Car_Pack_3_Screenshot_WM_3840x2160_03c34628f3.jpg"},
+                {title: "FIFA 24 با تغییرات جدید منتشر شد", description: "نسخه جدید بازی فوتبال با گرافیک بهبود یافته منتشر شد.", img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2195250/f11315d7491f706b09b059d12424f711e9778b82/capsule_616x353.jpg?t=1730826798"},
+                {title: "Resident Evil 9 معرفی شد", description: "کپکام از نسخه جدید Resident Evil رونمایی کرد.", img: "https://thegamepost.com/wp-content/uploads/2024/11/resident-evil-9-leak-gameplay-details-playtests-4-860x484.webp"},
+                {title: "League of Legends قهرمان جدید معرفی کرد", description: "قهرمان جدید به لیست کاراکترهای بازی اضافه شد.", img: "https://res-2.cloudinary.com/jawa/image/upload/q_auto/v1/blog/1675777489-league-of-legends-cover.webp"}
+            ];
+                 
+            let newsContainer = document.getElementById('news');
+            newsData.forEach(news => {
+                let newsItem = document.createElement('div');
+                newsItem.className = 'news-item';
+                newsItem.innerHTML = `
+                    <a href="${news.link}" target="_blank">
+                        <img src="${news.img}" alt="${news.title}">
+                    </a>
+                    <h3>${news.title}</h3>
+                    <p>${news.description}</p>
+                `;
+                newsContainer.appendChild(newsItem);
+            });
+        </script>
+        <script>
+            // چرخش مکعب
+            const cube = document.getElementById('cube');
+            let rotationDuration = 10;  // Default rotation duration (seconds)
+
+            cube.addEventListener('click', () => {
+                cube.style.transition = `transform ${rotationDuration}s linear`;
+                cube.style.transform = `rotateX(360deg) rotateY(360deg)`;
+            });
+
+            cube.addEventListener('dblclick', () => {
+                rotationDuration = 5;  // Faster rotation duration for double click
+                cube.style.transition = `transform ${rotationDuration}s linear`;
+                cube.style.transform = `rotateX(720deg) rotateY(720deg)`;
+            });
+
+        </script>
+    </div>
+    <p class="update-text" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">اخبار آپدیت خواهد شد</p>
+    <p class="warning-text" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">کپی برداری از کدهای سایت پیگرد قانونی دارد &copy;</p>
+    <div class="rgb-footer"></div>
+</body>
+</html>

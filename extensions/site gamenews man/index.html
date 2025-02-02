@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اخبار گیمینگ</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Impact&display=swap');
+        
+        body {
+            background: linear-gradient(135deg, #111111, #ff3333);
+            color: white;
+            font-family: Impact, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 50px;
+            animation: fadeIn 2s ease-in-out;
+            margin-top: 20px;
+            color: #ff3333;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            flex-grow: 1; 
+        }
+
+        .news-item {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 300px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            position: relative;
+        }
+
+        .news-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .news-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .news-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        
+        .read-more-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: #ff3333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+            display: none; 
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .news-item:hover .read-more-btn {
+            display: block;
+            opacity: 1; 
+        }
+
+        
+        .contact-links {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.8); 
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+            z-index: 100;
+            margin-top: auto;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            background-color: #ff3333;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background-color: #cc0000;
+        }
+
+        
+        @media (max-width: 480px) {
+            .contact-links a {
+                padding: 8px 15px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>جدیدترین اخبار گیمینگ</h1>
+
+    <div class="news-container" id="news"></div>
+
+    <div class="contact-links">
+        <a href="https://t.me/@Shayan_masterx0" target="_blank">تلگرام</a>
+        <a href="https://rubika.ir/@Shayan_masterx43" target="_blank">روبیکا</a>
+        <a href="https://www.instagram.com/shayan_masterx" target="_blank">اینستاگرام</a>
+        <a href="mailto:youremail@example.com" target="_blank">ایمیل</a>
+    </div>
+
+    <script>
+        const newsData = [
+            {title:"Kingdom Come: Deliverance 2" , description:"این بازی در تاریخ ۴ فوریه ۲۰۲۵ (۱۵ بهمن ۱۴۰۳) برای پلی‌استیشن ۵، ایکس‌باکس سری X|S و رایانه‌های شخصی عرضه خواهد شد. نسخه دوم این بازی با دنیایی بازتر، مکانیک‌های پیچیده‌تر و گرافیکی بهبود‌یافته، تجربه‌ای واقع‌گرایانه‌تر را ارائه می‌دهد" , img:"https://api2.zoomg.ir/media/kingdomcomedeliverance2characters-67512db2337a34794d757745" ,link:"https://example.com/kingdom-come-deliverance-2"} , 
+            {title:"Sid Meier’s Civilization VII:" , description:"این نسخه جدید از سری استراتژیک محبوب Civilization در تاریخ ۱۱ فوریه ۲۰۲۵ (۲۲ بهمن ۱۴۰۳) برای کنسول‌های نسل جدید، نینتندو سوییچ و رایانه‌های شخصی منتشر خواهد شد. در این نسخه، مدیریت امپراتوری‌ها و تصمیم‌گیری‌های سیاسی وارد مرحله جدیدی می‌شود." ,img:"https://www.nintendo.com/eu/media/images/10_share_images/games_15/nintendo_switch_4/2x1_NSwitch_SidMeiersCivilizationVII_image1600w.jpg" , link:"https://example.com/civilization-vii"} , 
+            {title:"GTA VI" , description:"شایعات حاکی از آن است که در رویداد State of Play ماه فوریه، ممکن است تریلر گیم‌پلی بازی مورد انتظار GTA VI نمایش داده شود. این بازی قرار است در سال ۲۰۲۵ منتشر شود و احتمال می‌رود تبلیغات آن به‌زودی آغاز شود." ,img:"https://www.digikala.com/mag/wp-content/uploads/2023/12/QdBZY2fkU-0-HD.jpg" , link:"https://example.com/gta-vi"} , 
+            {title:"Doom: The Dark Ages" , description:"نسخه جدیدی از سری Doom با نام The Dark Ages در سال ۲۰۲۵ منتشر خواهد شد که انتظار می‌رود تجربه‌ای هیجان‌انگیز را برای طرفداران این سری به ارمغان بیاورد." ,img:"https://api2.zoomg.ir/media/2024-6-doom-tda-site-66cc7d122b5676090d02f0fa" , link:"https://example.com/doom-the-dark-ages"} , 
+            {title:"Assassin's Creed Shadows" , description:"یوبی‌سافت در حال توسعه نسخه‌ای جدید از سری Assassin's Creed با نام Shadows است که قرار است در سال ۲۰۲۵ عرضه شود." ,img:"https://www.digikala.com/mag/wp-content/uploads/2024/05/AssassinsCreedShadows.jpg" , link:"https://example.com/assassins-creed-shadows"} , 
+            {title:"Death Stranding 2: On the Beach:" , description:"هیدئو کوجیما در حال کار بر روی نسخه دوم بازی Death Stranding با عنوان On the Beach است که انتظار می‌رود در سال ۲۰۲۵ منتشر شود" ,img:"https://www.digikala.com/mag/wp-content/uploads/2024/02/6cs-A1rNvEE-HD-e1706751714165.jpg" , link:"https://example.com/death-stranding-2"} , 
+            {title:"پیشرفت‌های جدید در توسعه بازی‌های واقعیت مجازی" , description:"توسعه‌دهندگان بازی‌های واقعیت مجازی از پیشرفت‌های جدیدی در زمینه گرافیک و تعاملات کاربری خبر داده‌اند. این پیشرفت‌ها تجربه بازی‌های واقعیت مجازی را برای کاربران بهبود می‌بخشند." ,img:"https://tse4.mm.bing.net/th?id=OIP.7AeG-RTTeXGJz616hk-0rgHaHa&pid=Api" , link:"https://example.com/vr-game-development"} , 
+            {title:"رشد بازار بازی‌های موبایل در سال ۲۰۲۵" , description:"بازار بازی‌های موبایل در سال ۲۰۲۵ با رشد چشم‌گیری مواجه شده است. تعداد کاربران فعال و درآمد حاصل از این بخش از صنعت بازی‌های ویدیویی افزایش یافته است." ,img:"https://vigiato.net/wp-content/uploads/2022/05/72177-16508506758411-1920-910x600.jpg" , link:"https://example.com/mobile-games-market"} 
+        ];
+
+        let newsContainer = document.getElementById('news');
+        newsData.forEach(news => {
+            let newsItem = document.createElement('div');
+            newsItem.className = 'news-item';
+            newsItem.innerHTML = `
+                <a href="${news.link}" target="_blank">
+                    <img src="${news.img}" alt="${news.title}">
+                </a>
+                <h3>${news.title}</h3>
+                <p>${news.description}</p>
+                <a href="${news.link}" class="read-more-btn" target="_blank">بیشتر بخوانید</a>
+            `;
+            newsContainer.appendChild(newsItem);
+        });
+
+        // Add scroll animation
+        const newsItems = document.querySelectorAll('.news-item');
+        window.addEventListener('scroll', () => {
+            newsItems.forEach(item => {
+                if (item.getBoundingClientRect().top < window.innerHeight) {
+                    item.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
